@@ -14,7 +14,7 @@ newbee-mall 项目是一套电商系统，基于 Spring Boot 2.X 和 Vue 以及�
 
 ## 配置内容
 1. 创建数据库 newbee_mall_db_v2
-2. 通过sql语句 newbee_mall_db_v2_schema.sql， 导入mysql基础数据
+2. 通过sql语句 newbee_mall_init.sql， 导入mysql基础数据
 3. 在application.properties中配置数据库的IP, 端口, 用户名, 密码
 
 ## 编译命令
