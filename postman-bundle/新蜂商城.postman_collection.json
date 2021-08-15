@@ -1,0 +1,594 @@
+{
+	"info": {
+		"_postman_id": "c533d3b8-9869-4b95-82c8-0d069dcc0db3",
+		"name": "新蜂商城",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user_api",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"if (jsonData.data) {",
+									"    postman.setEnvironmentVariable(\"nb-token\", jsonData.data);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"loginName\": \"13521234567\",\n  \"passwordMd5\": \"25d55ad283aa400af464c76d713c07ad\"\n}"
+						},
+						"url": {
+							"raw": "{{nb-host}}/api/v1/user/login",
+							"host": [
+								"{{nb-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dashboard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{nb-token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{nb-host}}/api/v1/index-infos",
+							"host": [
+								"{{nb-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"index-infos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Good Detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{nb-token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{nb-host}}/api/v1/goods/detail/:goodId",
+							"host": [
+								"{{nb-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"goods",
+								"detail",
+								":goodId"
+							],
+							"variable": [
+								{
+									"key": "goodId",
+									"value": "10893"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Shop Cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"if (jsonData.data[0]) {",
+									"    postman.setEnvironmentVariable(\"cartItemId\", jsonData.data[0].cartItemId);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{nb-token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{nb-host}}/api/v1/shop-cart?pageNumber=1",
+							"host": [
+								"{{nb-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"shop-cart"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add to Shop Cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{nb-token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"goodsCount\": 1,\n  \"goodsId\": 10891\n}"
+						},
+						"url": {
+							"raw": "{{nb-host}}/api/v1/shop-cart",
+							"host": [
+								"{{nb-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"shop-cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Settle",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{nb-token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{nb-host}}/api/v1/shop-cart/settle?cartItemIds={{cartItemId}}",
+							"host": [
+								"{{nb-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"shop-cart",
+								"settle"
+							],
+							"query": [
+								{
+									"key": "cartItemIds",
+									"value": "{{cartItemId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"if (jsonData.data) {",
+									"    postman.setEnvironmentVariable(\"orderId\", jsonData.data);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{nb-token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"addressId\": {{addressId}},\n  \"cartItemIds\": [\n    {{cartItemId}}\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{nb-host}}/api/v1/saveOrder",
+							"host": [
+								"{{nb-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"saveOrder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PaySuccess - Wechat",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{nb-token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{nb-host}}/api/v1/paySuccess?orderNo={{orderId}}&payType=2",
+							"host": [
+								"{{nb-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"paySuccess"
+							],
+							"query": [
+								{
+									"key": "orderNo",
+									"value": "{{orderId}}"
+								},
+								{
+									"key": "payType",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PaySuccess - Alipay",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{nb-token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{nb-host}}/api/v1/paySuccess?orderNo={{orderId}}&payType=1",
+							"host": [
+								"{{nb-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"paySuccess"
+							],
+							"query": [
+								{
+									"key": "orderNo",
+									"value": "{{orderId}}"
+								},
+								{
+									"key": "payType",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderList",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{nb-token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"addressId\": {{addressId}},\n  \"cartItemIds\": [\n    15\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{nb-host}}/api/v1/order?pageNumber=1&status=",
+							"host": [
+								"{{nb-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"order"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "status",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Address",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{nb-token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{nb-host}}/api/v1/address",
+							"host": [
+								"{{nb-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Address Default",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"if (jsonData.data) {",
+									"    postman.setEnvironmentVariable(\"addressId\", jsonData.data.addressId);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{nb-token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{nb-host}}/api/v1/address/default",
+							"host": [
+								"{{nb-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"address",
+								"default"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{nb-token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{nb-host}}/api/v1/user/info",
+							"host": [
+								"{{nb-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{nb-token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"loginName\": \"13521234567\",\n  \"passwordMd5\": \"25d55ad283aa400af464c76d713c07ad\"\n}"
+						},
+						"url": {
+							"raw": "{{nb-host}}/api/v1/user/logout",
+							"host": [
+								"{{nb-host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
