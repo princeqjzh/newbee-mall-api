@@ -17,7 +17,7 @@ newbee-mall 项目是一套电商系统，基于 Spring Boot 2.X 和 Vue 以及�
 2. 通过sql语句 newbee_mall_init.sql， 导入mysql基础数据
 3. 数据库配置方法
     - 直接改代码方式：在application.properties中配置数据库的IP, 端口, 用户名, 密码
-    - 环境变量方式， 请在环境变量中配置如下信息：
+    - 环境变量方式， 请在环境变量中配置如下参数：
          - mysql_host: mysql 数据库hostname 或者 IP
          - mysql_port: mysql 数据库端口号
          - mysql_user: mysql 数据库用户名
@@ -28,3 +28,16 @@ mvn clean install
 
 ## 启动命令
 mvn spring-boot:run
+
+## Docker 部署
+- 依赖条件：需要在相同的宿主机上启动MySQL的Docker容器，并将其命名为prod_mysql，启动命令参考如下：
+  docker run -d --name prod_mysql -v /<your path>/.mysql_prod:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 mysql:latest
+  
+- 将基础数据通过 newbee_mall_init.sql 导入mysql数据库
+  
+- 在Docker宿主机配置如下环境变量：
+  - mysql_port: mysql 数据库端口号
+  - mysql_user: mysql 数据库用户名
+  - mysql_port: mysql 数据库密码
+   
+- Docker 镜像生成与启动脚本： deploy_docker.sh
