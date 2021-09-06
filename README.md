@@ -15,8 +15,14 @@ newbee-mall 项目是一套电商系统，基于 Spring Boot 2.X 和 Vue 以及�
 ## 配置内容
 1. 创建数据库 newbee_mall_db_v2
 2. 通过sql语句 newbee_mall_init.sql， 导入mysql基础数据
-3. 在application.properties中配置数据库的IP, 端口, 用户名, 密码
-
+3. 数据库配置方法
+    - 直接改代码方式：在application.properties中配置数据库的IP, 端口, 用户名, 密码
+    - 环境变量方式， 请在环境变量中配置如下信息：
+         - mysql_host: mysql 数据库hostname 或者 IP
+         - mysql_port: mysql 数据库端口号
+         - mysql_user: mysql 数据库用户名
+         - mysql_port: mysql 数据库密码
+    
 ## 编译命令
 mvn clean install
 
