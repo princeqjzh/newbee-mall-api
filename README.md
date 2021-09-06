@@ -38,6 +38,6 @@ mvn spring-boot:run
 - 在Docker宿主机配置如下环境变量：
   - mysql_port: mysql 数据库端口号
   - mysql_user: mysql 数据库用户名
-  - mysql_port: mysql 数据库密码
+  - mysql_pwd: mysql 数据库密码
    
 - Docker 镜像生成与启动脚本： deploy_docker.sh

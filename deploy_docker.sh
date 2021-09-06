@@ -17,7 +17,7 @@ docker rmi $docker_image_name
 ## 生成新的docker image
 docker build -t $docker_image_name .
 
-## 启动新的docker image 暴露端口 8981
+## 启动新的docker image 暴露端口 28019
 ## 需要事先启动mysql docker 容器，将其命名为prod_mysql
 ## 请在环境变量中配置如下信息：
 ## - mysql_port: mysql 数据库端口号
