@@ -23,6 +23,6 @@ docker build -t $docker_image_name .
 ## - mysql_port: mysql 数据库端口号
 ## - mysql_user: mysql 数据库用户名
 ## - mysql_pwd: mysql 数据库密码
-docker run -d --name $docker_container_name -p 28019:28019 --link prod_mysql:db \
+docker run -d --name $docker_container_name -p 28019:28019 --link $container_mysql:db \
   -e mysql_host=db -e mysql_port=$mysql_port -e mysql_user=$mysql_user -e mysql_pwd=$mysql_pwd \
  $docker_image_name
