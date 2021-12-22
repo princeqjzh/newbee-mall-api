@@ -29,7 +29,7 @@ pipeline{
                                     $class: "GitSCM",
                                     branches: [[name: "$params.api_branch"]],
                                     extensions: [[$class: "CleanBeforeCheckout"]],
-                                    userRemoteConfigs: [[url: "git@github.com:princeqjzh/newbee-mall-api.git"]]
+                                    userRemoteConfigs: [[url: "https://github.com/princeqjzh/newbee-mall-api.git"]]
                                 ]
                             )
                         }
@@ -45,7 +45,7 @@ pipeline{
                                     $class: "GitSCM",
                                     branches: [[name: "$params.vue_branch"]],
                                     extensions: [[$class: "CleanBeforeCheckout"]],
-                                    userRemoteConfigs: [[url: "git@github.com:princeqjzh/newbee-mall-vue3-app.git"]]
+                                    userRemoteConfigs: [[url: "https://github.com/princeqjzh/newbee-mall-vue3-app.git"]]
                                 ]
                             )
                         }
