@@ -1,6 +1,6 @@
 pipeline{
     agent {
-        label "newbeen_mall"
+        label "newbee_mall"
     }
 
     options {
