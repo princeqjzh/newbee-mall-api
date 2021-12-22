@@ -1,6 +1,6 @@
 pipeline{
     agent {
-        label "newbee"
+        label "test"
     }
 
     options {
