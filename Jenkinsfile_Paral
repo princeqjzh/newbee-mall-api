@@ -1,6 +1,6 @@
 pipeline{
     agent {
-        label "test"
+        label "master"
     }
 
     options {
@@ -29,7 +29,7 @@ pipeline{
                                     $class: "GitSCM",
                                     branches: [[name: "$params.api_branch"]],
                                     extensions: [[$class: "CleanBeforeCheckout"]],
-                                    userRemoteConfigs: [[url: "https://github.com/princeqjzh/newbee-mall-api.git"]]
+                                    userRemoteConfigs: [[url: "git@gitee.com:11547299/newbee-mall-api.git"]]
                                 ]
                             )
                         }
@@ -45,7 +45,7 @@ pipeline{
                                     $class: "GitSCM",
                                     branches: [[name: "$params.vue_branch"]],
                                     extensions: [[$class: "CleanBeforeCheckout"]],
-                                    userRemoteConfigs: [[url: "https://github.com/princeqjzh/newbee-mall-vue3-app.git"]]
+                                    userRemoteConfigs: [[url: "git@gitee.com:11547299/newbee-mall-vue3-app.git"]]
                                 ]
                             )
                         }
