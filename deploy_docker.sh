@@ -1,7 +1,26 @@
 #!/usr/bin/env bash
 
-export docker_image_name=mallapi_img
-export docker_container_name=mallapi
+# 启动默认docker container命令： ./deploy_docker.sh
+# 启动自定义docker container命令： ./deploy_docker.sh <your container name> <your export port>
+
+# Docker container 命名
+if [ -n "$1" ] ;then
+  export docker_container_name=$1
+else
+  export docker_container_name=mallapi
+fi
+
+if [ -n "$2" ] ;then
+  export export_port=$2
+else
+  export export_port=28019
+fi
+
+export docker_image_name="mallapi_img_$export_port"
+
+echo "Docker image: $docker_image_name"
+echo "Docker container name : $docker_container_name"
+echo "Docker container port: $export_port"
 
 ## Maven 编译
 mvn clean install -Dmaven.test.skip=true
@@ -22,6 +41,6 @@ docker build -t $docker_image_name .
 ## 请在环境变量中配置如下信息：
 ## - mysql_user: mysql 数据库用户名
 ## - mysql_pwd: mysql 数据库密码
-docker run -d --name $docker_container_name -p 28019:28019 --link $container_mysql:db \
+docker run -d --name $docker_container_name -p $export_port:28019 --link $container_mysql:db \
   -e mysql_host=db -e mysql_port=3306 -e mysql_user=$mysql_user -e mysql_pwd=$mysql_pwd \
  $docker_image_name
