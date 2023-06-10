@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class Healthy {
     @GetMapping("/")
-    @ApiOperation(value = "我的收货地址列表", notes = "")
     public String sayHello() throws InterruptedException {
-        Thread.sleep(1500);
         System.out.println("Health check!");
         return "Hello I am here";
     }
