@@ -46,7 +46,12 @@ public class NewBeeMallExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public Object handleException(Exception e, HttpServletRequest req) {
+    public Object handleException(Exception e, HttpServletRequest req) throws Exception {
+        if(e instanceof RuntimeException) {
+            if(e.getMessage().contains("Downgrade")){
+                throw e;
+            }
+        }
         Result result = new Result();
         result.setResultCode(500);
         //区分是否为自定义异常
