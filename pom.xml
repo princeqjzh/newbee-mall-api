@@ -87,6 +87,13 @@ Copyright (c) 2019-2021 十三 all rights reserved.
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
             <version>2.1.0.RELEASE</version>
         </dependency>
+
+        <!-- skywalking -->
+        <dependency>
+            <groupId>org.apache.skywalking</groupId>
+            <artifactId>apm-toolkit-logback-1.x</artifactId>
+            <version>8.13.0</version>
+        </dependency>
     </dependencies>
 
     <build>
