@@ -2,7 +2,10 @@
 
 # 压测脚本中设定的压测时间从Jenkins任务参数中传入，参数名称 duration
 # 生成的压测报告入口文件为 ./index.html
-export jmx_filename="newbee_stress_complex.jmx"
+export jmx_template="newbee_stress_complex"
+export suffix=".jmx"
+export jmx_template_filename="${jmx_template}${suffix}"
+export os_type=`uname`
 
 # 需要在系统变量中定义jmeter根目录的位置，如下
 # export jmeter_path="/your jmeter path/"
@@ -19,14 +22,32 @@ for num in "${thread_number_array[@]}"
 do
     echo "单节点压测并发数 ${num}"
     # 定义jtl结果文件名与压测报告路径
+    export jmx_filename="${jmx_template}_${num}${suffix}"
     export jtl_filename="test_${num}.jtl"
     export web_report_path_name="web_${num}"
 
-    rm -f ${jtl_filename}
+    rm -f ${jmx_filename} ${jtl_filename}
     rm -rf ${web_report_path_name}
 
+    cp ${jmx_template_filename} ${jmx_filename}
+    echo "生成jmx压测脚本 ${jmx_filename}"
+
+    # 配置并发数
+    if [[ "${os_type}" == "Darwin" ]]; then
+        sed -i "" "s/thread_num/${num}/g" ${jmx_filename}
+    else
+        sed -i "s/thread_num/${num}/g" ${jmx_filename}
+    fi
+
+    # 配置运行时间，单位：秒
+    if [[ "${os_type}" == "Darwin" ]]; then
+        sed -i "" "s/stress_duration/${duration}/g" ${jmx_filename}
+    else
+        sed -i "s/stress_duration/${duration}/g" ${jmx_filename}
+    fi
+
     # JMeter 远程静默压测 + 生成html压测报告
-    ${jmeter_path}/bin/jmeter -n -r -t ${jmx_filename} -l ${jtl_filename}  -Jthread=${num} -Jduration=${duration} -e -o ${web_report_path_name}
+    ${jmeter_path}/bin/jmeter -n -t ${jmx_filename} -l ${jtl_filename} -r -e -o ${web_report_path_name}
     echo "结束压测单节点并发数 ${num}"
     echo "<a href='${web_report_path_name}'>${web_report_path_name}</a><br><br>" >> index.html
 done
