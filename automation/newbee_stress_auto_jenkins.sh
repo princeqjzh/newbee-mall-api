@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-# 压测脚本中设定的压测时间从Jenkins任务参数中传入，参数名称 duration
+# 压测脚本中设定的压测时间，并发数队列，每组并发压测之间的等待时间，远程节点数，均需要从Jenkins任务参数中传入。
+# 参数名称：
+#   thread_number_list
+#   duration
+#   polling
+#   nodes_num
 # 生成的压测报告入口文件为 ./index.html
 export jmx_template="newbee_stress_complex"
 export suffix=".jmx"
@@ -15,7 +20,6 @@ echo "自动化压测开始"
 rm -f index.html
 echo "" > index.html
 
-
 # 压测并发数列表
 thread_number_array=($thread_number_list)
 for num in "${thread_number_array[@]}"
@@ -23,8 +27,9 @@ do
     echo "单节点压测并发数 ${num}"
     # 定义jtl结果文件名与压测报告路径
     export jmx_filename="${jmx_template}_${num}${suffix}"
-    export jtl_filename="test_${num}.jtl"
     export web_report_path_name="web_${num}"
+    export total_threads=$((${num}*${nodes_num}))
+    export jtl_filename="test_${total_threads}.jtl"
 
     rm -f ${jmx_filename} ${jtl_filename}
     rm -rf ${web_report_path_name}
