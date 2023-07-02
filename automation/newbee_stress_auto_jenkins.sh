@@ -27,9 +27,9 @@ do
     echo "单节点压测并发数 ${num}"
     # 定义jtl结果文件名与压测报告路径
     export jmx_filename="${jmx_template}_${num}${suffix}"
-    export web_report_path_name="web_${num}"
     export total_threads=$((${num}*${nodes_num}))
     export jtl_filename="test_${total_threads}.jtl"
+    export web_report_path_name="web_${total_threads}"
 
     rm -f ${jmx_filename} ${jtl_filename}
     rm -rf ${web_report_path_name}
