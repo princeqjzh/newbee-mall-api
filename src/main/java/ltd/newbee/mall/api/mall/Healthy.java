@@ -1,9 +1,7 @@
 package ltd.newbee.mall.api.mall;
 
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +14,13 @@ public class Healthy {
     public String sayHello() throws InterruptedException {
         System.out.println("Health check!");
         return "Hello I am here";
+    }
+
+    @GetMapping("/long")
+    public String longTime() throws InterruptedException {
+        System.out.println("It takes long time!");
+        Thread.sleep(10000);
+        return "Take long time";
     }
 
     @GetMapping("/gc")
