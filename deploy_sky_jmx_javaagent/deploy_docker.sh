@@ -2,6 +2,11 @@
 
 # 启动默认docker container命令： ./deploy_docker.sh
 # 启动自定义docker container命令： ./deploy_docker.sh <your container name> <your export port>
+# 需要自定义配置如下参数
+# export oap_addr=???
+# export container_mysql=???
+# export mysql_user=???
+# export mysql_pwd=???
 
 # Docker container 命名
 if [ -n "$1" ] ;then
