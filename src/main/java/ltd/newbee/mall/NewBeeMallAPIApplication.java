@@ -23,7 +23,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class NewBeeMallAPIApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(NewBeeMallAPIApplication.class, args);
+         SpringApplication.run(NewBeeMallAPIApplication.class, args);
     }
 
 }
