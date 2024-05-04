@@ -22,12 +22,18 @@ newbee-mall 项目是一套电商系统，基于 Spring Boot 2.X 和 Vue 以及�
          - mysql_port: mysql 数据库端口号
          - mysql_user: mysql 数据库用户名
          - mysql_port: mysql 数据库密码
+         - server_port: 服务运行端口
+         - app_name: 服务名称
+            
     
 ## 编译命令
 mvn clean install
 
 ## 启动命令
 mvn spring-boot:run
+
+## Swagger接口文档
+http://localhost:<server_port>/swagger-ui.html
 
 ## Docker 部署
 - 依赖条件：需要在相同的宿主机上启动MySQL的Docker容器，并将其命名为prod_mysql，启动命令参考如下：
@@ -36,7 +42,6 @@ mvn spring-boot:run
 - 将基础数据通过 newbee_mall_init.sql 导入mysql数据库
   
 - 在Docker宿主机配置如下环境变量：
-  - mysql_port: mysql 数据库端口号
   - mysql_user: mysql 数据库用户名
   - mysql_pwd: mysql 数据库密码
    
