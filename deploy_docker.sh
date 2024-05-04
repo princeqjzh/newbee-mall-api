@@ -38,6 +38,7 @@ docker build -t $docker_image_name .
 
 ## 启动新的docker image 暴露端口 28019
 ## 需要事先启动mysql docker 容器，将其名称赋值给环境变量 container_mysql *必须设置参数
+## - container_mysql: mysql docker container 名称
 ## 请在环境变量中配置如下信息：
 ## - mysql_user: mysql 数据库用户名 *必须设置参数
 ## - mysql_pwd: mysql 数据库密码 *必须设置参数

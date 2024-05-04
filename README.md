@@ -44,5 +44,6 @@ http://localhost:<server_port>/swagger-ui.html
 - 在Docker宿主机配置如下环境变量：
   - mysql_user: mysql 数据库用户名
   - mysql_pwd: mysql 数据库密码
+  - container_mysql: mysql docker container 名称
    
 - Docker 镜像生成与启动脚本： deploy_docker.sh
