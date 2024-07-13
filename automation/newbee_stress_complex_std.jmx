@@ -191,7 +191,7 @@ UPDATE newbee_mall_db_v2.tb_newbee_mall_goods_info SET stock_num=&apos;100000&ap
         <stringProp name="ThreadGroup.num_threads">${__P(thread, 2)}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">2</stringProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">${__P(duration, 20)}</stringProp>
+        <stringProp name="ThreadGroup.duration">${__P(duration, 60)}</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
       </ThreadGroup>
