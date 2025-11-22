@@ -21,6 +21,9 @@ export docker_image_name="${docker_container_name}_img_${export_port}"
 echo "Docker image: $docker_image_name"
 echo "Docker container name : $docker_container_name"
 echo "Docker container port: $export_port"
+echo "MySQL Docker Container Name: $container_mysql"
+echo "MySQL User Name: $mysql_user"
+echo "MySQL Password: $mysql_pwd"
 
 ## Maven 编译
 mvn clean install -Dmaven.test.skip=true
